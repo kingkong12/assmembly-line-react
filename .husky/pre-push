@@ -1,0 +1,5 @@
+# #!/bin/sh
+# . "$(dirname $0)/_/husky.sh"
+
+# More Details: https://typicode.github.io/husky/#/?id=features
+# npm run lint:fix

@@ -1,0 +1,7 @@
+# #!/bin/sh
+# . "$(dirname $0)/_/husky.sh"
+
+# # More Details: https://typicode.github.io/husky/#/?id=features
+# echo "# HUSKY_GIT_PARAMS: $@"
+
+# node_modules/.bin/commitlint -e $1

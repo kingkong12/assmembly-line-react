@@ -1,0 +1,43 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "downlevelIteration": true,
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": false,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react",
+    "baseUrl": "src",
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": [
+    "src/**/*.d.ts",
+    "src/**/*.snap",
+    "src/*.ts",
+    "src/*.tsx",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "typings/**/*.ts",
+    "src/**/*.js",
+    "server/*.js",
+    "server.js",
+    "jest.config.js",
+    "config-overrides.js",
+    ".commitlintrc.js"
+  ],
+  "exclude": [
+    "src/assets/**"
+  ]
+}
