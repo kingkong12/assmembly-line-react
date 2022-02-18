@@ -1,25 +1,16 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC } from 'react'
 import { AssemblyLineStagesTS } from 'smeui-interfaces/constants'
-
+import { useAssemblyLineHook } from 'hooks/useAssemblyLineHook'
+import { Container } from './Styles'
 interface AssemblyLineTS {
   stages: AssemblyLineStagesTS
 }
 
-interface StateWithIdsTS {
-  [a: string]: Array<string>
-}
-
 const AssemblyLine: FC<AssemblyLineTS> = ({ stages }) => {
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  const [state, setState] = useState<StateWithIdsTS | {}>({})
+  const [addnewString, changeAddnewstring] = useAssemblyLineHook(stages)
+  useAssemblyLineHook(stages)
 
-  useEffect(() => {
-    const convertedStagesToState = stages.reduce((ac, a) => ({ ...ac, [a]: [] }), {})
-    setState(convertedStagesToState)
-  }, [stages])
-
-  console.log('state', state)
-  return <div>Assembly line</div>
+  return <Container>Assembly line</Container>
 }
 
 export default AssemblyLine
