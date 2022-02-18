@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "downlevelIteration": true,
     "allowJs": true,
     "skipLibCheck": true,
@@ -37,7 +33,5 @@
     "config-overrides.js",
     ".commitlintrc.js"
   ],
-  "exclude": [
-    "src/assets/**"
-  ]
+  "exclude": ["src/assets/**", "src/tests/**"]
 }
