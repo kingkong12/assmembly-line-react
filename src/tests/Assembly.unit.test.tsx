@@ -45,28 +45,67 @@ describe('Asslembly Line', () => {
       expect(inputBox.instance().value).toEqual('')
     })
 
-    /* Input box
-    Type something in search box and hit enter :
-       1) Search box should be empty.
-       2) element  should be added to fist column
-    */
+    it('1.4) should be able to clear input box on Enter', () => {
+      //  const inputValue = ['Clear Input', 'Mithil']
+      const inputValue = ['Dummy Text 1', 'Dummy Text 2', 'Dummy Text 3', 'Dummy Text 4']
+      const inputBox = comp.find('.add-element').hostNodes()
+      const cardElement = comp.find('.assembly-column').hostNodes()
+
+      inputValue.forEach((addCard) => {
+        inputBox.simulate('change', { target: { value: addCard } })
+        comp.find('.input-submit').hostNodes().simulate('submit')
+        comp.update()
+      })
+
+      // adds elements/cards to the first column
+      expect(comp.find('.assembly-column').hostNodes().at(0).find('div').at(0).text()).toEqual(
+        'Dummy Text 4'
+      )
+      expect(comp.find('.assembly-column').hostNodes().at(0).find('div').at(1).text()).toEqual(
+        'Dummy Text 3'
+      )
+
+      // Simulate left click for 'Dummy CText 4' on column "Ideas"
+      comp.find('.assembly-column').hostNodes().at(0).find('div').at(0).simulate('click')
+
+      comp.update()
+
+      // expecting it to move to next column i.e : 'Development'
+      expect(comp.find('.assembly-column').hostNodes().at(1).find('div').at(0).text()).toEqual(
+        'Dummy Text 4'
+      )
+
+      // expecting "Dummy Text 3" to move to the top of "Development" column
+      comp.find('.assembly-column').hostNodes().at(0).find('div').at(0).simulate('click')
+
+      comp.update()
+
+      expect(comp.find('.assembly-column').hostNodes().at(1).find('div').at(0).text()).toEqual(
+        'Dummy Text 3'
+      )
+
+      // expecting "Dummy Text 3" to move to the top of "TESTING" column
+      comp.find('.assembly-column').hostNodes().at(1).find('div').at(0).simulate('click')
+      comp.update()
+      // expecting "Dummy Text 3" to move to the top of final column i.e :  "DEPLOYMENT"
+      comp.find('.assembly-column').hostNodes().at(2).find('div').at(0).simulate('click')
+      comp.update()
+      // expecting "Dummy Text 3" to be Deleted from final column i.e :  "DEPLOYMENT" column
+      comp.find('.assembly-column').hostNodes().at(3).find('div').at(0).simulate('click')
+      comp.update()
+      expect(comp.find('.assembly-column').hostNodes().at(3).find('div').exists()).toBe(false)
+
+      // Right click on card Dummy Text 2 from column  'Ideas' , this will delete Dummy Text 1
+      comp.find('.assembly-column').hostNodes().at(0).find('div').at(0).simulate('contextmenu')
+      comp.update()
+
+      expect(comp.find('.assembly-column').hostNodes().at(3).find('div').exists()).toBe(false)
+    })
+
     /*
-    First column :
-    - Add multiple elements into the first column
-    - Left Click : ( + )
-        1) should update list and remove element form the column
-        2) should element in thte next column
-        3) when the column is the last element : It should remove the element  all together
-        4) it should be place at the top.
-    - right click : ( - )
-        1) remove th element from the  column
-        2) if the element is place in the previous column it should move to the previous coulumn
-        shoudl be renderd at the bottom.
-
-    TODO:  Add  sty;ed component testing
+    TODO:  Add  styled component testing
     - may be we can add css styled component testing to it.
-    - adding snap shot-testing to it.   to it
-
+    - adding snap shot-testing to it.   to i
     */
   })
 })
