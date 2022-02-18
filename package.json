@@ -69,7 +69,7 @@
     "scripts": {
         "start": "npm run prepare && react-scripts start",
         "build": "npm run prepare && react-scripts build",
-        "test": "npm run prepare && react-scripts test",
+        "test": "npm run prepare && react-scripts test --watchAll",
         "eject": "react-scripts eject",
         "lint": "eslint 'src/**'",
         "lint:specific": "eslint",
