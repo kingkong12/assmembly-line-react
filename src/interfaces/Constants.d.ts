@@ -3,4 +3,6 @@ declare module 'smeui-interfaces/constants' {
 
   type routes = typeof apiRoutes
   interface ApiRoutes extends routes {}
+
+  export type AssemblyLineStagesTS = Array<string>
 }
