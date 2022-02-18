@@ -9,7 +9,7 @@ module.exports = {
     },
     project: './tsconfig.json',
   },
-  ignorePatterns: ['src/assets/**'],
+  ignorePatterns: ['src/assets/**', 'src/tests/**'],
   extends: [
     'react-app', // Create React App base settings
     'eslint:recommended', // recommended ESLint rules
