@@ -1,16 +1,25 @@
 /* eslint-disable no-prototype-builtins */
-import { useState, useEffect, Dispatch, SetStateAction, useMemo } from 'react'
+import { useState, useMemo, useEffect, Dispatch, SetStateAction } from 'react'
 import { AssemblyLineStagesTS } from 'smeui-interfaces/constants'
+
+type useAssemblyLineHookReturn = [
+  string,
+  Dispatch<SetStateAction<string>>,
+  () => void,
+  StateWithIdsTS,
+  (columnsTitle: string, columnsTitlendex: number, element: string) => void,
+  (columnsTitle: string, columnsTitlendex: number, element: string) => void
+]
 
 interface StateWithIdsTS {
   [a: string]: Array<string>
 }
 
-type useAssemblyLineHookReturn = [string, Dispatch<SetStateAction<string>>, () => void]
-
 export const useAssemblyLineHook = (stages: AssemblyLineStagesTS): useAssemblyLineHookReturn => {
+  // centralized state of the app.
   const [state, setState] = useState<StateWithIdsTS>({})
-  const [addnewString, changeAddnewstring] = useState<string>('')
+
+  const [addnewString, changeAddnewstring] = useState('')
 
   const { getFirstColumdId, getLastColumnId } = useMemo(() => {
     return {
@@ -19,7 +28,6 @@ export const useAssemblyLineHook = (stages: AssemblyLineStagesTS): useAssemblyLi
     }
   }, [stages])
 
-  // Once the props are initialize,  we define the local state of the app and render tables
   useEffect(() => {
     const convertedStagesToState = stages.reduce((ac, a) => ({ ...ac, [a]: [] }), {})
     setState(convertedStagesToState)
@@ -35,5 +43,31 @@ export const useAssemblyLineHook = (stages: AssemblyLineStagesTS): useAssemblyLi
     changeAddnewstring('')
   }
 
-  return [addnewString, changeAddnewstring, addToAssembly]
+  const onLeftClick = (columnsTitle: string, columnsTitlendex: number, element: string): void => {
+    const stateArrayCopy = state[`${columnsTitle}`].slice().filter((item) => item !== element)
+    const isLastColum = columnsTitle === getLastColumnId
+
+    const getNextColumnId = stages[columnsTitlendex + 1]
+
+    setState({
+      ...state,
+      ...(isLastColum ? {} : { [getNextColumnId]: [element, ...state[`${getNextColumnId}`]] }),
+      [columnsTitle]: stateArrayCopy,
+    })
+  }
+
+  const onRightClick = (columnsTitle: string, columnsTitlendex: number, element: string): void => {
+    const stateArrayCopy = state[`${columnsTitle}`].slice().filter((item) => item !== element)
+    const isFirstColum = columnsTitle === getFirstColumdId
+
+    const getNextColumnId = stages[columnsTitlendex - 1]
+
+    setState({
+      ...state,
+      ...(isFirstColum ? {} : { [getNextColumnId]: [...state[`${getNextColumnId}`], element] }),
+      [columnsTitle]: stateArrayCopy,
+    })
+  }
+
+  return [addnewString, changeAddnewstring, addToAssembly, state, onLeftClick, onRightClick]
 }
