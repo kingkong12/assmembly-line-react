@@ -20,7 +20,8 @@ const globalStyles = createGlobalStyle`
 
 
 body {
-  }
+
+}
 
  #root {
     height: 100%;
@@ -28,6 +29,7 @@ body {
     flex-direction: column;
     overflow: auto;
     min-height: 100vh;
+
   }
 
 `

@@ -1,5 +1,7 @@
 const palette = {
-  primary: {}, //  ADD YOUR APP COLORS HERE
+  primary: {
+    lightblue: '#669DB2',
+  }, //  ADD YOUR APP COLORS HERE
   secondary: {},
   tertiary: {},
 }

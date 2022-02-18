@@ -1,11 +1,7 @@
-import React, { FC, ChangeEvent } from 'react'
-import styled from 'styled-components/macro'
+import React, { FC } from 'react'
+
 import { BaseInput } from './Styles'
-interface InputTS {
-  className?: string
-  value?: string
-  onChange?: (event: ChangeEvent<HTMLInputElement>) => void
-}
+import { InputTS } from 'smeui-interfaces/components/atoms'
 
 const Input: FC<InputTS> = ({ className, value, onChange }) => {
   return (

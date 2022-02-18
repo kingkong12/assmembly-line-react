@@ -1,4 +1,6 @@
 declare module 'smeui-interfaces/services' {
+  import { AssemblyLineStagesTS } from 'smeui-interfaces/constants'
+
   type customLogger = (...msgs: any[]) => void
   interface ServicesLogger {
     silly: customLogger
@@ -7,5 +9,9 @@ declare module 'smeui-interfaces/services' {
     info: customLogger
     warn: customLogger
     error: customLogger
+  }
+
+  export interface AssemblyLineTS {
+    stages: AssemblyLineStagesTS
   }
 }
