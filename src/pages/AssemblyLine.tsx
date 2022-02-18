@@ -30,14 +30,14 @@ const AssemblyLine: FC<AssemblyLineTS> = ({ stages }) => {
     <Container>
       <InputContainer>
         <form onSubmit={onInputFormSubmit} className="input-submit">
-          <StyledInput value={addnewString} onChange={onChange} />
+          <StyledInput className="add-element" value={addnewString} onChange={onChange} />
         </form>
       </InputContainer>
       <ColumnContainer>
         {stages.map((columnsTitle, index) => {
           return (
-            <Column key={`${columnsTitle}-${index}`}>
-              <Title>{columnsTitle}</Title>
+            <Column className={'assembly-column'} key={`${columnsTitle}-${index}`}>
+              <Title className={'column-title'}>{columnsTitle}</Title>
               {state[`${columnsTitle}`]?.map((element, elementIndex) => {
                 return (
                   <Card
