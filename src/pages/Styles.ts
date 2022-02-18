@@ -1,4 +1,5 @@
 import styled from 'styled-components/macro'
+import Input from 'components/atoms/Input/Input'
 
 export const Container = styled.div`
   display: flex;
@@ -9,4 +10,8 @@ export const Container = styled.div`
 export const InputContainer = styled.div`
   margin: 8px;
   margin: 0 auto;
+`
+
+export const StyledInput = styled(Input)`
+  margin: auto;
 `
