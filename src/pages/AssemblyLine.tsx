@@ -37,8 +37,10 @@ const AssemblyLine: FC<AssemblyLineTS> = ({ stages }) => {
         {stages.map((columnsTitle, index) => {
           return (
             <Column className={'assembly-column'} key={`${columnsTitle}-${index}`}>
+              {/* Renders the title of the vertical column  */}
               <Title className={'column-title'}>{columnsTitle}</Title>
               {state[`${columnsTitle}`]?.map((element, elementIndex) => {
+                //   Renders the card inside vertical column
                 return (
                   <Card
                     key={`${element}-${elementIndex}-${index}`}

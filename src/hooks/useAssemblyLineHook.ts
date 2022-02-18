@@ -2,6 +2,11 @@
 import { useState, useMemo, useEffect, Dispatch, SetStateAction } from 'react'
 import { AssemblyLineStagesTS } from 'smeui-interfaces/constants'
 
+/*
+****** useAssemblyLineHookReturn ****
+Hook is responsible to add and navigate cards to appropriate direction in swim lane as well as maintainin state of application state
+* @para1 :  it requires stages a  prop to initialize state if applicatoin
+*/
 type useAssemblyLineHookReturn = [
   string,
   Dispatch<SetStateAction<string>>,
@@ -19,8 +24,10 @@ export const useAssemblyLineHook = (stages: AssemblyLineStagesTS): useAssemblyLi
   // centralized state of the app.
   const [state, setState] = useState<StateWithIdsTS>({})
 
+  // this state is used to captured input value entered by the user
   const [addnewString, changeAddnewstring] = useState('')
 
+  // This function could be prevented , however wrapping it inside useMemo will prevent initializing of getFirstColumdId and getLastColumdId
   const { getFirstColumdId, getLastColumnId } = useMemo(() => {
     return {
       getFirstColumdId: stages[0] || '',
@@ -28,6 +35,7 @@ export const useAssemblyLineHook = (stages: AssemblyLineStagesTS): useAssemblyLi
     }
   }, [stages])
 
+  // Initialize state based on stages
   useEffect(() => {
     const convertedStagesToState = stages.reduce((ac, a) => ({ ...ac, [a]: [] }), {})
     setState(convertedStagesToState)
@@ -47,8 +55,9 @@ export const useAssemblyLineHook = (stages: AssemblyLineStagesTS): useAssemblyLi
     const stateArrayCopy = state[`${columnsTitle}`].slice().filter((item) => item !== element)
     const isLastColum = columnsTitle === getLastColumnId
 
+    // moves card to the right colum
     const getNextColumnId = stages[columnsTitlendex + 1]
-
+    // TODO: as a part of optimization, onLeftClick and onRightClick function can be consolidate into one
     setState({
       ...state,
       ...(isLastColum ? {} : { [getNextColumnId]: [element, ...state[`${getNextColumnId}`]] }),
@@ -60,6 +69,7 @@ export const useAssemblyLineHook = (stages: AssemblyLineStagesTS): useAssemblyLi
     const stateArrayCopy = state[`${columnsTitle}`].slice().filter((item) => item !== element)
     const isFirstColum = columnsTitle === getFirstColumdId
 
+    // moves card to the left colum
     const getNextColumnId = stages[columnsTitlendex - 1]
 
     setState({
