@@ -8,16 +8,7 @@ import {
 const Routes = (): JSX.Element => {
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <Switch>
-        {/* Public Routes */}
-        {/* <Route exact path="/hit">
-          <Hit />
-        </Route>
-        <Route exact path="/miss">
-          <Miss />
-        </Route> */}
-        {/* Private Routes */}
-      </Switch>
+      <Switch>Routes</Switch>
     </Suspense>
   )
 }

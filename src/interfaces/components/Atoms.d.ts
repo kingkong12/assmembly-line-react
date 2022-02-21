@@ -4,5 +4,6 @@ declare module 'smeui-interfaces/components/atoms' {
     className?: string
     value?: string
     onChange?: (event: ChangeEvent<HTMLInputElement>) => void
+    // .. more props can be added later
   }
 }
