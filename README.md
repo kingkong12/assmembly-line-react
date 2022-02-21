@@ -9,11 +9,11 @@ To build this application I used my custom boiler plate which was built on top o
 - [Installation](#Installation)
   - [Local Setup](#local-setup)
   - [Running Unit Tests](#running-unit-tests)
-- [Libraries used in project](#additional-libraries-used-in-project)
-- [All about state management.](#stdin)
-- [My impression of giving coding examination.](#stdin)
-- [Challenges I faced while building this application.](#stdin)
-- [Potential Improvement without time constraints](#stdin)
+- [Libraries used in project](#additional-libraries-and-design-pattern-used-in-project)
+- [All about state management.](#all-about-state-management)
+- [My impression of giving coding examination.](#my-impression-of-giving-coding-examination)
+- [Challenges I faced while building this application](#challenges-i-faced-while-building-this-application)
+- [Potential Improvement without time constraints](#potential-improvement-without-time-constraints)
 <!--te-->
 
 # Installation
@@ -39,14 +39,18 @@ Type Following command in terminal :
 
 Pleas Note that the snapshot testing weren't implemented because of time constraints.
 
-# Additional Libraries used in project
+# Additional Libraries and Design Pattern used in project
 
-1. [Styled-components](https://styled-components.com/) - styled-components lets you write actual CSS in your JavaScript. This means you can use all the features of CSS you use and love, including (but by far not limited to) media queries, all pseudo-selectors, nesting, etc.
+1.Library:[Styled-components](https://styled-components.com/) - styled-components lets you write actual CSS in your JavaScript. This means you can use all the features of CSS you use and love, including (but by far not limited to) media queries, all pseudo-selectors, nesting, etc.
 
-2. [Enzyme](https://enzymejs.github.io/enzyme/) - Enzyme is a JavaScript Testing utility for React that makes it easier to test your React Components' output. You can also manipulate, traverse, and in some ways simulate runtime given the output.
+2. Library: [Enzyme](https://enzymejs.github.io/enzyme/) - Enzyme is a JavaScript Testing utility for React that makes it easier to test your React Components' output. You can also manipulate, traverse, and in some ways simulate runtime given the output.
    Enzyme's API is meant to be intuitive and flexible by mimicking jQuery's API for DOM manipulation and traversal.
 
-# All about state management.
+3. Design pattern - [Atomic-Designs](https://xd.adobe.com/ideas/process/ui-design/atomic-design-principles-methodology-101/) Atomic Design is a methodology created by Brad Frost seeking to provide direction on building interface design systems more deliberately and with explicit order and hierarchy.
+
+   Folder structure in this app is based on Atomic Design where the pages signify containers or stateful components.
+
+# All about state management
 
 Applications state is managed by `useAssemblyLineHook.tsx`
 
@@ -90,4 +94,3 @@ I found the entire process to be very joyful. The given problem statement was li
 7. inspecting and improving performance
 8. adding accessability
 9. optimize custom hook : useAssemblyyLineHook
-10.
