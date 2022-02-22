@@ -26,3 +26,6 @@
 //     error: (...msgs: any[]): void => debugLogger(namespace, 'error', true, ...msgs),
 //   }
 // }
+
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+export const Logger = (): void => {}

@@ -14,7 +14,7 @@ const WallpaperCss = css`
 
 const BoxShadow = css<BoxShadowTS>`
   ${({ r = 0, g = 0, b = 0, opacity = 0.35 }): string =>
-    `box-shadow: rgba(${r}, ${g}, ${b}, ${opacity}) 0px 5px 15px;;`}
+    `box-shadow: rgba(${r}, ${g}, ${b}, ${opacity}) 0px 5px 15px;`}
 `
 
 export const Container = styled.div`
