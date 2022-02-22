@@ -12,7 +12,7 @@ const staticColors = {
   success: '#27AE60',
   information: '#1D7CF6',
   warning: '#FDBE2D',
-  lightSlateGrey: '#868e96',
+  lightSlateGrey: '#E3E4E6',
   offWhite1: '#F9FDFE',
   white: '#FFFFFF',
 }

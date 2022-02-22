@@ -2,27 +2,20 @@ import React, { FC, ChangeEvent } from 'react'
 
 import { useAssemblyLineHook } from 'hooks/useAssemblyLineHook'
 import { AssemblyLineTS } from 'smeui-interfaces/services'
-import {
-  Container,
-  InputContainer,
-  StyledInput,
-  ColumnContainer,
-  Column,
-  Title,
-  Card,
-} from './Styles'
+import { Container, InputContainer, StyledInput, ColumnContainer, Column, Card } from './Styles'
+import { H3 } from 'components/atoms/Typography/Typography'
 
 const AssemblyLine: FC<AssemblyLineTS> = ({ stages }) => {
   const [addnewString, changeAddnewstring, addToAssembly, state, onLeftClick, onRightClick] =
     useAssemblyLineHook(stages)
 
-  const onChange = (event: ChangeEvent<HTMLInputElement>): void => {
-    changeAddnewstring && changeAddnewstring(event.target.value)
-  }
+  const onChange = (event: ChangeEvent<HTMLInputElement>): void =>
+    changeAddnewstring(event.target.value)
 
   const onInputFormSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault()
-    if (addnewString === '') return
+    // Prevent entering values which are blank or empty
+    if (!/\S/.test(addnewString)) return
     addToAssembly()
   }
 
@@ -30,7 +23,12 @@ const AssemblyLine: FC<AssemblyLineTS> = ({ stages }) => {
     <Container>
       <InputContainer>
         <form onSubmit={onInputFormSubmit} className="input-submit">
-          <StyledInput className="add-element" value={addnewString} onChange={onChange} />
+          <StyledInput
+            placeHolder="Add an Item"
+            className="add-element"
+            value={addnewString}
+            onChange={onChange}
+          />
         </form>
       </InputContainer>
       <ColumnContainer>
@@ -38,9 +36,11 @@ const AssemblyLine: FC<AssemblyLineTS> = ({ stages }) => {
           return (
             <Column className={'assembly-column'} key={`${columnsTitle}-${index}`}>
               {/* Renders the title of the vertical column  */}
-              <Title className={'column-title'}>{columnsTitle}</Title>
+              <H3 toUpperCase className={'column-title'}>
+                {columnsTitle}
+              </H3>
+              {/* Renders the card inside vertical column*/}
               {state[`${columnsTitle}`]?.map((element, elementIndex) => {
-                //   Renders the card inside vertical column
                 return (
                   <Card
                     key={`${element}-${elementIndex}-${index}`}
